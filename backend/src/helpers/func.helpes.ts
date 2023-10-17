@@ -6,7 +6,6 @@ import { path_dirRoot_src } from '../url';
  */
 export async function validateFolder(FindPath: string) {
   try {
-    // console.log(routePathSO);
     await access(`${path_dirRoot_src}${FindPath}`, constants.F_OK);
   } catch (error) {
     await mkdir(`${path_dirRoot_src}${FindPath}`);

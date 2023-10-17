@@ -1,3 +1,5 @@
+import { url_backend } from "../url";
+
 //* Esta función retorna una palabra con tres cifra (se puede modificar para tener más cifras).
 
 export function threeLetters(): string {
@@ -60,4 +62,11 @@ export function returnUserLocalStorage(key: string): string | null {
   }
   const parsedItem: userLocalStorage = JSON.parse(item);
   return parsedItem.user;
+}
+
+//* Funcion para retornar lo información de las imagenes de cada usuario.
+
+export async function fetchingDataByUser(id: string, url: string) {
+  const json = await fetch(`${url_backend}/folder/${url}?idUser=${id}`);
+  return await json.json();
 }
