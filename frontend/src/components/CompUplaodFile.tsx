@@ -1,10 +1,12 @@
 import { url_backend } from "../url";
 import { returnUserLocalStorage } from "../helpers/function.helpers";
+import { IntersectionFilesComponents } from '../types/typesFetch'
 
-function CompUplaodFile() {
+function CompUplaodFile({objParent}: {objParent: IntersectionFilesComponents}) {
   /**
    ** Functions
    */
+  const {value, eventChangeComp} = objParent
   const uploadFile = (event: React.ChangeEvent) => {
     //* Estructura que guarda los files
     const formFile = new FormData();
@@ -22,6 +24,10 @@ function CompUplaodFile() {
       method: "POST",
       body: formFile,
     });
+    if (eventChangeComp) {
+      eventChangeComp(!value)
+      
+    }
   };
 
   return (

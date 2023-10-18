@@ -3,7 +3,6 @@ import {
   getItemWithExpiration,
   setInfoLocalStorage,
   threeLetters,
-  fetchingDataByUser,
 } from "./helpers/function.helpers";
 import { url_backend } from "./url";
 import UploadFile from "./components/CompUplaodFile";
@@ -12,7 +11,7 @@ import ToolBar from "./components/ToolBar";
 import DownloadComp from "./components/DownloadComp";
 
 function App() {
-  
+  const [change, setChange] = useState(false); 
   useEffect(() => {
     //* Variable que almacena los tres caracteres para identificar el usuario.
     window.history.pushState(null, "", "/");
@@ -43,9 +42,14 @@ function App() {
     <main className="w-[80vw] h-[90%] min-w-[340px]">
       <ToolBar />
       <div className="">
-        <UploadFile />
+        <UploadFile objParent={{
+          value:change,
+          eventChangeComp: setChange
+        }} />
       </div>
-       <DownloadComp  />
+       <DownloadComp objParent={{
+        value: change,
+       }} />
     </main>
   );
 }

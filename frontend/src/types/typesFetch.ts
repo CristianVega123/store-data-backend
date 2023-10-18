@@ -6,6 +6,6 @@ export interface fetchingDataFile {
 }
 
 export interface IntersectionFilesComponents {
-  value: string 
-  event: React.Dispatch<React.SetStateAction<boolean>>
+  value: boolean 
+  eventChangeComp ?: React.Dispatch<React.SetStateAction<boolean>>
 }
