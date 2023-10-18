@@ -1,7 +1,10 @@
 import { url_backend } from "../url";
 import { returnUserLocalStorage } from "../helpers/function.helpers";
+import { useState } from 'react'
 
 function CompUplaodFile() {
+  const [change, setchange] = useState(false) 
+
   /**
    ** Functions
    */
@@ -22,6 +25,9 @@ function CompUplaodFile() {
       method: "POST",
       body: formFile,
     });
+
+    setchange(!change)
+
   };
 
   return (
