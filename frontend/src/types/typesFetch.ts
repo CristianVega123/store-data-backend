@@ -4,3 +4,8 @@ export interface fetchingDataFile {
     nameUser: string;
     uuidImg: string;
 }
+
+export interface IntersectionFilesComponents {
+  value: string 
+  event: React.Dispatch<React.SetStateAction<boolean>>
+}
