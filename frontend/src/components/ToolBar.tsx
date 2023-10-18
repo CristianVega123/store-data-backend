@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { threeLetters, setInfoLocalStorage } from "../helpers/function.helpers";
+import { setInfoLocalStorage, threeLetters } from "../helpers/function.helpers";
 import { url_backend } from "../url";
 
 function ToolBar() {

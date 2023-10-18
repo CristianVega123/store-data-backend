@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   getItemWithExpiration,
   setInfoLocalStorage,
   threeLetters,
-  fetchingDataByUser,
 } from "./helpers/function.helpers";
 import { url_backend } from "./url";
 import UploadFile from "./components/CompUplaodFile";
@@ -12,7 +11,6 @@ import ToolBar from "./components/ToolBar";
 import DownloadComp from "./components/DownloadComp";
 
 function App() {
-  
   useEffect(() => {
     //* Variable que almacena los tres caracteres para identificar el usuario.
     window.history.pushState(null, "", "/");
@@ -39,14 +37,13 @@ function App() {
     return () => {};
   }, []);
 
-  
   return (
     <main className="w-[80vw] h-[90%] min-w-[340px]">
       <ToolBar />
       <div className="">
-        <UploadFile  />
+        <UploadFile />
       </div>
-       <DownloadComp  />
+      <DownloadComp />
     </main>
   );
 }
