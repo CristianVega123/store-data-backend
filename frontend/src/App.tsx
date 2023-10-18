@@ -5,7 +5,6 @@ import {
   threeLetters,
   fetchingDataByUser,
 } from "./helpers/function.helpers";
-import { fetchingDataFile } from "./types/typesFetch";
 import { url_backend } from "./url";
 import UploadFile from "./components/CompUplaodFile";
 import "./index.css";
@@ -47,7 +46,7 @@ function App() {
       <div className="">
         <UploadFile  />
       </div>
-      <DownloadComp/>
+       <DownloadComp  />
     </main>
   );
 }
