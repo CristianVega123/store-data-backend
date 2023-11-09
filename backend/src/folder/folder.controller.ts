@@ -2,7 +2,9 @@ import {
   Controller,
   Get,
   Post,
+  Delete,
   Query,
+  Res,
   StreamableFile,
   UploadedFiles,
   UseInterceptors,
@@ -12,6 +14,7 @@ import { UserStorageService } from './service/user-storage.service';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { createReadStream } from 'fs';
+import { Response } from 'express';
 
 @Controller('folder')
 export class FolderController {
@@ -57,6 +60,7 @@ export class FolderController {
 
   @Get('file')
   async sentFile(
+    @Res({ passthrough: true }) res: Response,
     @Query('uuidImg') uuidImg: string,
     @Query('user') user: string,
   ) {
@@ -65,9 +69,31 @@ export class FolderController {
       user,
     );
 
+    const type = filewithUUID?.split('.')[1];
+
     const file = createReadStream(
       join(process.cwd(), `/src/store/${user}/${filewithUUID}`),
     );
+
+    res.set({
+      'Content-Type': 'image/' + type,
+      'Content-Disposition': `attachment; filename="${filewithUUID}"`,
+    });
+
     return new StreamableFile(file);
+  }
+
+  @Delete('deleteFile')
+  async deleteFile(
+    @Query('idfile') idfile: number,
+    @Query('iduser') iduser: string,
+  ) {
+    console.log(idfile, iduser);
+    const idFindBy = await this.userService.findById(idfile);
+    if (idFindBy) {
+      console.log(idFindBy);
+
+      this.folderService.findAndDeleteFolderById(iduser, idFindBy.fieldname);
+    }
   }
 }

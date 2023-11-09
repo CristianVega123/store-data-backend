@@ -40,8 +40,11 @@ function App() {
 
   return (
     <main className="w-[80vw] h-[90%] min-w-[340px]">
-      <ToolBar />
-      <div className="">
+      <ToolBar objParent={{
+        value: change,
+        eventChangeComp: setChange
+      }} />
+      <div className="flex justify-center items-center">
         <UploadFile objParent={{
           value:change,
           eventChangeComp: setChange
@@ -49,6 +52,7 @@ function App() {
       </div>
        <DownloadComp objParent={{
         value: change,
+        eventChangeComp: setChange
        }} />
     </main>
   );

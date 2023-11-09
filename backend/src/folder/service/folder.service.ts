@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { validateFolder } from '../../helpers/func.helpes';
-import { readdir } from 'fs/promises';
+import { readdir, rm } from 'fs/promises';
 import { join } from 'path';
 
 @Injectable()
@@ -26,5 +26,9 @@ export class FolderService {
     });
 
     return filename;
+  }
+
+  async findAndDeleteFolderById(user: string, filename: string) {
+    await rm(join(process.cwd(), `/src/store/${user}/${filename}`));
   }
 }

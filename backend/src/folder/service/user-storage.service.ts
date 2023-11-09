@@ -21,4 +21,16 @@ export class UserStorageService {
       },
     });
   }
+  async findById(idfile: number): Promise<StorageImg | null> {
+    const dataBeforeDelete =
+      (await this.StorageImgRepository.findOne({
+        where: {
+          id: idfile,
+        },
+      })) ?? null;
+    await this.StorageImgRepository.delete({
+      id: idfile,
+    });
+    return dataBeforeDelete;
+  }
 }
